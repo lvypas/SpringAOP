@@ -1,21 +1,28 @@
 package org.lvypas.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.lvypas.model.Circle;
 
 @Aspect
 public class LoggingAspect {
 
-    @Before("allGetters() && allCircleMethods()")
-    public void LoggingAdvice() {
-        System.out.println("Advice run. Get method called.");
+    @Before("allCircleMethods()")
+    public void LoggingAdvice(JoinPoint joinPoint) {
+        Circle circle = (Circle) joinPoint.getTarget();
     }
     
-    @Before("allGetters()")
+    @Before("args(name)")
+    public void stringArgumentMethods(String name){
+        System.out.println("A method tah takes String argument has been called. The value is " + name);
+    }
+    
+    /*@Before("allGetters()")
     public void secondAdvice() {
         System.out.println("Second Advice executed.");
-    }
+    }*/
     
     @Pointcut("execution(* get*())")
     public void allGetters() {}
