@@ -14,7 +14,7 @@
  </bean>
  
  <bean name = "circle" class="org.lvypas.model.Circle">
- 	<property name="name" value="Circle name"/>
+ 	<!-- <property name="name" value="Circle name"/> -->
  </bean>
  
  <bean name = "shapeService" class="org.lvypas.service.ShapeService" autowire="byName" /> 	
