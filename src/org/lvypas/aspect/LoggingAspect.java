@@ -28,7 +28,7 @@ public class LoggingAspect {
         System.out.println("An exception has been thrown"+ ex);
     }
     
-    @Around("allGetters()")
+    @Around("@annotation(org.lvypas.aspect.Loggable)")
     public Object myAroundAdvice(ProceedingJoinPoint proceedingJoinPoint) {
         
         Object returnValue = null;
@@ -50,6 +50,7 @@ public class LoggingAspect {
     
     @Pointcut("execution(* get*())")
     public void allGetters() {}
+        
     
     @Pointcut("within(org.lvypas.model.Circle)")
     public void allCircleMethods() {}   
